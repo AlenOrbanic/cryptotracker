@@ -1,5 +1,15 @@
 <template>
-<h1>This is the products page!</h1>
+<div id="page-wrap">
+  <div class="grid-wrap">
+<div v-for="product in products" class="product-item" v-bind:key="product.id">
+  <img v-bind:src="product.imageUrl"/>
+<h3 clas="product-name">{{ product.name }}}</h3>   
+<p class="product-price">${{ product.price }}}</p>
+<router-link v-bind:to="'/products/'+product.id"> <!--router link je bolji od anchora jer nam ne refresha str.-->
+<button>View details</button></router-link>
+    </div>
+  </div>
+</div>    
 </template>
 
 <style scoped>
@@ -41,7 +51,14 @@
 </style>
 
 <script>
+import {products} from '../fake-data';
 export default{
     name: 'ProductsPage',
+    data(){
+      return{
+        title: 'Hello!',
+        products,
+      };
+    }
 };
 </script>

@@ -2,8 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import CartPage from '../views/CartPage.vue';
 import ProductDetailPage from '../views/ProductDetailPage.vue';
-import ProductsPage from '../views/ProductsPage';
-
+import ProductsPage from '../views/ProductsPage.vue';
+import NotFoundPage from '../views/NotFoundPage.vue';
 Vue.use(VueRouter)
 
 const routes = [
@@ -25,6 +25,10 @@ const routes = [
   {
     path: '/', //ovo je home page, redirecta na products
     redirect:'/products'
+  },
+  {
+    path: '*',
+    component: NotFoundPage
   },
 ]
 

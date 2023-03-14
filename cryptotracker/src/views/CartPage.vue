@@ -1,8 +1,20 @@
 <template>
-    <h1>This is the cart detail page!</h1>
-    </template>
+<div id="page-wrap">
+  <h1>Shopping cart</h1>
+  <div v-for="product in cartItems" :key="product.id" class="product-container">
+    <img class="product-image" :src="product.imageUrl"/>
+    <div class="details-wrap">
+      <h3>{{ product.name }}}</h3>
+      <p>${{ product.price }}}</p>
+    </div>
+    <button class="remove-button">Remove from cart</button>
+  </div>
+  <h3 id="total-price">Total: ${{ totalPrice }}}</h3>
+  <button id="checkout-button">Proceed to checkout</button>
+</div>    
+</template>
     
-    <style scoped>
+<style scoped>
     h1 {
       border-bottom: 1px solid black;
       margin: 0;
@@ -44,8 +56,22 @@
     }
   </style>
     
-    <script>
-    export default{
-        name: 'CartPage',
+<script>
+import { cartItems } from '../fake-data';  
+export default{
+   name: 'CartPage',
+   data(){
+    return{
+      cartItems,
     };
-    </script>
+   },
+  computed:{
+    totalPrice(){
+      return this.cartItems.reduce(
+        (sum, item) => sum + Number(item.price),
+        0
+      );
+    }
+  }
+};
+</script>
